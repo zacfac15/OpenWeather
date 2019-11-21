@@ -16,14 +16,6 @@ public class IntroGUI extends javax.swing.JFrame
   public IntroGUI()
   {
     initComponents();
-    initComboBox();
-  }
-  
-  public void initComboBox()
-  {
-    cbCountry.addItem("at");
-    cbCountry.addItem("de");
-    cbCountry.addItem("us");
   }
 
   /**
@@ -42,11 +34,17 @@ public class IntroGUI extends javax.swing.JFrame
     jList1 = new javax.swing.JList<>();
     jScrollPane2 = new javax.swing.JScrollPane();
     jTable1 = new javax.swing.JTable();
+    jMenuBar1 = new javax.swing.JMenuBar();
+    jMenu1 = new javax.swing.JMenu();
+    jMenuItem1 = new javax.swing.JMenuItem();
+    jMenuItem2 = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+    jPanel6.setLayout(new java.awt.GridLayout(1, 0));
     getContentPane().add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
-    jPanel4.setLayout(new java.awt.GridLayout());
+    jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
     jScrollPane3.setViewportView(jList1);
 
@@ -70,6 +68,18 @@ public class IntroGUI extends javax.swing.JFrame
     jPanel4.add(jScrollPane2);
 
     getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
+
+    jMenu1.setText("Data");
+
+    jMenuItem1.setText("Add Destination");
+    jMenu1.add(jMenuItem1);
+
+    jMenuItem2.setText("Day");
+    jMenu1.add(jMenuItem2);
+
+    jMenuBar1.add(jMenu1);
+
+    setJMenuBar(jMenuBar1);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
@@ -121,6 +131,10 @@ public class IntroGUI extends javax.swing.JFrame
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JList<String> jList1;
+  private javax.swing.JMenu jMenu1;
+  private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JMenuItem jMenuItem1;
+  private javax.swing.JMenuItem jMenuItem2;
   private javax.swing.JPanel jPanel4;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JScrollPane jScrollPane2;
