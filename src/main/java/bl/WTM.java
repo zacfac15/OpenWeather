@@ -7,6 +7,7 @@ import javax.swing.table.AbstractTableModel;
 public class WTM extends AbstractTableModel
 {
   private List<Weather> weather = new ArrayList<>();
+  private ApiCut api = new ApiCut();
 
   @Override
   public int getRowCount()
@@ -26,4 +27,10 @@ public class WTM extends AbstractTableModel
     return null;
   }
   
+  public void getExportData(String zip)
+  {
+    String[] tokens = api.getData(zip);
+    
+    
+  }
 }

@@ -36,53 +36,23 @@ public class IntroGUI extends javax.swing.JFrame
   private void initComponents()
   {
 
-    jPanel3 = new javax.swing.JPanel();
-    jButton1 = new javax.swing.JButton();
-    jButton2 = new javax.swing.JButton();
-    jPanel2 = new javax.swing.JPanel();
-    jLabel1 = new javax.swing.JLabel();
-    tfOrt = new javax.swing.JTextField();
-    jLabel2 = new javax.swing.JLabel();
-    cbCountry = new javax.swing.JComboBox<>();
-    jPanel1 = new javax.swing.JPanel();
-    jScrollPane1 = new javax.swing.JScrollPane();
-    jtWeather = new javax.swing.JTable();
+    jPanel6 = new javax.swing.JPanel();
+    jPanel4 = new javax.swing.JPanel();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    jList1 = new javax.swing.JList<>();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    jTable1 = new javax.swing.JTable();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    getContentPane().add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
-    jPanel3.setLayout(new java.awt.GridLayout(1, 2));
+    jPanel4.setLayout(new java.awt.GridLayout());
 
-    jButton1.setText("Validate");
-    jButton1.addActionListener(new java.awt.event.ActionListener()
-    {
-      public void actionPerformed(java.awt.event.ActionEvent evt)
-      {
-        onValidate(evt);
-      }
-    });
-    jPanel3.add(jButton1);
+    jScrollPane3.setViewportView(jList1);
 
-    jButton2.setText("Cancel");
-    jPanel3.add(jButton2);
+    jPanel4.add(jScrollPane3);
 
-    getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
-
-    jPanel2.setLayout(new java.awt.GridLayout(1, 4));
-
-    jLabel1.setText("Destination");
-    jPanel2.add(jLabel1);
-    jPanel2.add(tfOrt);
-
-    jLabel2.setText("Saved Destinations");
-    jPanel2.add(jLabel2);
-
-    jPanel2.add(cbCountry);
-
-    getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
-
-    jPanel1.setLayout(new java.awt.GridLayout(1, 0));
-
-    jtWeather.setModel(new javax.swing.table.DefaultTableModel(
+    jTable1.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][]
       {
         {null, null, null, null},
@@ -95,19 +65,14 @@ public class IntroGUI extends javax.swing.JFrame
         "Title 1", "Title 2", "Title 3", "Title 4"
       }
     ));
-    jScrollPane1.setViewportView(jtWeather);
+    jScrollPane2.setViewportView(jTable1);
 
-    jPanel1.add(jScrollPane1);
+    jPanel4.add(jScrollPane2);
 
-    getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+    getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
-
-  private void onValidate(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onValidate
-  {//GEN-HEADEREND:event_onValidate
-    
-  }//GEN-LAST:event_onValidate
 
   /**
    * @param args the command line arguments
@@ -155,16 +120,11 @@ public class IntroGUI extends javax.swing.JFrame
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JComboBox<String> cbCountry;
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
-  private javax.swing.JPanel jPanel3;
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jtWeather;
-  private javax.swing.JTextField tfOrt;
+  private javax.swing.JList<String> jList1;
+  private javax.swing.JPanel jPanel4;
+  private javax.swing.JPanel jPanel6;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JTable jTable1;
   // End of variables declaration//GEN-END:variables
 }
