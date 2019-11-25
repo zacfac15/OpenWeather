@@ -35,6 +35,71 @@ public class Weather
     this.sunset = sunset;
   }
 
+  public int getPlz()
+  {
+    return plz;
+  }
+
+  public String getDestination()
+  {
+    return destination;
+  }
+
+  public String getCountry()
+  {
+    return country;
+  }
+
+  public String getClouds()
+  {
+    return clouds;
+  }
+
+  public String getDescription()
+  {
+    return description;
+  }
+
+  public int getWindspeed()
+  {
+    return windspeed;
+  }
+
+  public int getPressure()
+  {
+    return pressure;
+  }
+
+  public int getHumidity()
+  {
+    return humidity;
+  }
+
+  public double getCurrenttemp()
+  {
+    return currenttemp;
+  }
+
+  public double getMintemp()
+  {
+    return mintemp;
+  }
+
+  public double getMaxTemp()
+  {
+    return maxTemp;
+  }
+
+  public LocalDateTime getSunrise()
+  {
+    return sunrise;
+  }
+
+  public LocalDateTime getSunset()
+  {
+    return sunset;
+  }
+
   
   
   

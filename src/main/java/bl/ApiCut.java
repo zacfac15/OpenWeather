@@ -1,5 +1,9 @@
 package bl;
 
+import com.google.gson.Gson;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
@@ -12,13 +16,7 @@ public class ApiCut
   private static String PATH = "weather";
   private static String APPID = "d098c83531678235423366b804870d8e";
 
-  
-  /**
-   * Gets the data from the weatherservice and place it formated in a String array
-   * @param zip wanted location
-   * @return the splited values from the weather service
-   */
-  public String[] getData(String zip)
+  public void getData(String zip) throws IOException
   {
     Client client = ClientBuilder.newClient();
 
@@ -31,24 +29,24 @@ public class ApiCut
 
     System.out.println(r.toString());
     String text = r.readEntity(String.class);
-    text = text.replace("{", "");
-    text = text.replace("}", "");
-    text = text.replace("[", "");
-    text = text.replace("]", "");
-    text = text.replace("coord", "");
-    text = text.replace("\"", "");
-    text = text.substring(1);
+    Gson gson = new Gson();
     System.out.println(text);
-    String[] tokens = text.split(",");
-    String[] help = new String[2];
-
-    return tokens;
+//    OpenWeatherResponse res = gson.fromJson(text, OpenWeatherResponse.class);
+//    System.out.println(res);
+//    Map<String,Object> map = gson.fromJson(text,new TypeToken<Map<String,Object>>(){}.getType());
+//    System.out.println(map);
+    
   }
-  
+
   public static void main(String[] args)
   {
     ApiCut api = new ApiCut();
-    api.getData("94040,us");
+    try
+    {
+      api.getData("94040,us");
+    } catch (IOException ex)
+    {
+      Logger.getLogger(ApiCut.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
 }
-
