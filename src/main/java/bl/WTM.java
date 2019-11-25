@@ -1,7 +1,6 @@
 package bl;
 
-import java.time.LocalDateTime;
-import java.time.Month;
+import DataClasses.Weather;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -30,24 +29,11 @@ public class WTM extends AbstractTableModel
     return null;
   }
 
-  
-  public void getExportData(String zip)
+  public void addToList(String zip)
   {
-    String[] tokens = api.getData(zip);
-
-    String name;
-    String country;
-    String condition;
-    String description;
-    String windspeed;
-    int pressure;
-    int humidity;
-    double currenttemp;
-    double mintemp;
-    double maxtemp;
-    LocalDateTime sunrise;
-    LocalDateTime sunset;
-
+    Weather w = api.parseData(zip);
+    weather.add(w);
+    this.fireTableRowsInserted(weather.size()-1, weather.size()-1);
   }
 
 }

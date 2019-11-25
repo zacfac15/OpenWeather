@@ -1,12 +1,10 @@
 package bl;
 
+import DataClasses.OpenWeatherResponse;
+import DataClasses.Weather;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
@@ -18,8 +16,14 @@ public class ApiCut
   private static String URI = "http://api.openweathermap.org/data/2.5/";
   private static String PATH = "weather";
   private static String APPID = "d098c83531678235423366b804870d8e";
-
-  public OpenWeatherResponse getData(String zip) throws IOException
+  private OpenWeatherResponse res = new OpenWeatherResponse();
+  
+  /**
+   * Is needed to get the Data from the API-Key
+   * @param zip is the ZIP code from the destination
+   * @throws IOException 
+   */
+  public void getData(String zip) throws IOException
   {
     Client client = ClientBuilder.newClient();
 
@@ -34,12 +38,15 @@ public class ApiCut
     String text = r.readEntity(String.class);
     Gson gson = new Gson();
     System.out.println(text);
-    OpenWeatherResponse res = gson.fromJson(text, OpenWeatherResponse.class);
-    
-    return res;
+    res = gson.fromJson(text, OpenWeatherResponse.class);
   }
 
-  public Weather parseData(OpenWeatherResponse res, String zip)
+  /**
+   * 
+   * @param zip ZIP-Code from destination
+   * @return finished Weather Object to Display in GUI
+   */
+  public Weather parseData(String zip)
   {
     int plz;
     String destination;
@@ -81,17 +88,5 @@ public class ApiCut
     
     Weather weather = new Weather(plz, destination, country, clouds, description, windspeed, pressure, humidity, currenttemp, mintemp, maxTemp, sunrise, sunset);
     return weather;
-  }
-
-  public static void main(String[] args)
-  {
-    ApiCut api = new ApiCut();
-    try
-    {
-      Weather weather = api.parseData(api.getData("94040,us"),"94040");
-    } catch (IOException ex)
-    {
-      Logger.getLogger(ApiCut.class.getName()).log(Level.SEVERE, null, ex);
-    }
   }
 }
