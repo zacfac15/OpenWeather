@@ -16,7 +16,7 @@ public class WeatherResponds
   private float id;
   private String main;
   private String description;
-  private Icon icon;
+  private String icon;
 
   public float getId()
   {
@@ -48,12 +48,12 @@ public class WeatherResponds
     this.description = description;
   }
 
-  public Icon getIcon()
+  public String getIcon()
   {
     return icon;
   }
 
-  public void setIcon(Icon icon)
+  public void setIcon(String icon)
   {
     this.icon = icon;
   }

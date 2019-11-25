@@ -14,26 +14,26 @@ import java.util.List;
 public class OpenWeatherResponse
 {
 
-  private List<CoordResponds> coord;
+  private CoordResponds coord;
   private List<WeatherResponds> weather;
   private String base;
-  private List<MainResponse> main;
+  private MainResponse main;
   private float visibility;
-  private List<WindResponde> wind;
-  private List<CloudResponde> cloud;
+  private WindResponde wind;
+  private CloudResponde cloud;
   private String dt;
-  private List<SysResponde> sys;
+  private SysResponde sys;
   private float timezone;
   private float id;
   private String name;
   private float cod;
 
-  public List<CoordResponds> getCoord()
+  public CoordResponds getCoord()
   {
     return coord;
   }
 
-  public void setCoord(List<CoordResponds> coord)
+  public void setCoord(CoordResponds coord)
   {
     this.coord = coord;
   }
@@ -58,12 +58,12 @@ public class OpenWeatherResponse
     this.base = base;
   }
 
-  public List<MainResponse> getMain()
+  public MainResponse getMain()
   {
     return main;
   }
 
-  public void setMain(List<MainResponse> main)
+  public void setMain(MainResponse main)
   {
     this.main = main;
   }
@@ -78,22 +78,22 @@ public class OpenWeatherResponse
     this.visibility = visibility;
   }
 
-  public List<WindResponde> getWind()
+  public WindResponde getWind()
   {
     return wind;
   }
 
-  public void setWind(List<WindResponde> wind)
+  public void setWind(WindResponde wind)
   {
     this.wind = wind;
   }
 
-  public List<CloudResponde> getCloud()
+  public CloudResponde getCloud()
   {
     return cloud;
   }
 
-  public void setCloud(List<CloudResponde> cloud)
+  public void setCloud(CloudResponde cloud)
   {
     this.cloud = cloud;
   }
@@ -108,12 +108,12 @@ public class OpenWeatherResponse
     this.dt = dt;
   }
 
-  public List<SysResponde> getSys()
+  public SysResponde getSys()
   {
     return sys;
   }
 
-  public void setSys(List<SysResponde> sys)
+  public void setSys(SysResponde sys)
   {
     this.sys = sys;
   }
@@ -157,7 +157,6 @@ public class OpenWeatherResponse
   {
     this.cod = cod;
   }
-  
-  
 
+ 
 }

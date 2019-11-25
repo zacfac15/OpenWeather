@@ -9,16 +9,16 @@ public class Weather
   private String country;
   private String clouds;
   private String description;
-  private int windspeed;
-  private int pressure;
-  private int humidity;
-  private double currenttemp;
-  private double mintemp;
-  private double maxTemp;
+  private float windspeed;
+  private float pressure;
+  private float humidity;
+  private float currenttemp;
+  private float mintemp;
+  private float maxTemp;
   private LocalDateTime sunrise;
   private LocalDateTime sunset;
 
-  public Weather(int plz, String destination, String country, String clouds, String description, int windspeed, int pressure, int humidity, double currenttemp, double mintemp, double maxTemp, LocalDateTime sunrise, LocalDateTime sunset)
+  public Weather(int plz, String destination, String country, String clouds, String description, float windspeed, float pressure, float humidity, float currenttemp, float mintemp, float maxTemp, LocalDateTime sunrise, LocalDateTime sunset)
   {
     this.plz = plz;
     this.destination = destination;
@@ -40,9 +40,19 @@ public class Weather
     return plz;
   }
 
+  public void setPlz(int plz)
+  {
+    this.plz = plz;
+  }
+
   public String getDestination()
   {
     return destination;
+  }
+
+  public void setDestination(String destination)
+  {
+    this.destination = destination;
   }
 
   public String getCountry()
@@ -50,9 +60,19 @@ public class Weather
     return country;
   }
 
+  public void setCountry(String country)
+  {
+    this.country = country;
+  }
+
   public String getClouds()
   {
     return clouds;
+  }
+
+  public void setClouds(String clouds)
+  {
+    this.clouds = clouds;
   }
 
   public String getDescription()
@@ -60,34 +80,69 @@ public class Weather
     return description;
   }
 
-  public int getWindspeed()
+  public void setDescription(String description)
+  {
+    this.description = description;
+  }
+
+  public float getWindspeed()
   {
     return windspeed;
   }
 
-  public int getPressure()
+  public void setWindspeed(float windspeed)
+  {
+    this.windspeed = windspeed;
+  }
+
+  public float getPressure()
   {
     return pressure;
   }
 
-  public int getHumidity()
+  public void setPressure(float pressure)
+  {
+    this.pressure = pressure;
+  }
+
+  public float getHumidity()
   {
     return humidity;
   }
 
-  public double getCurrenttemp()
+  public void setHumidity(float humidity)
+  {
+    this.humidity = humidity;
+  }
+
+  public float getCurrenttemp()
   {
     return currenttemp;
   }
 
-  public double getMintemp()
+  public void setCurrenttemp(float currenttemp)
+  {
+    this.currenttemp = currenttemp;
+  }
+
+  public float getMintemp()
   {
     return mintemp;
   }
 
-  public double getMaxTemp()
+  public void setMintemp(float mintemp)
+  {
+    this.mintemp = mintemp;
+  }
+
+  public float getMaxTemp()
   {
     return maxTemp;
+  }
+
+  public void setMaxTemp(float maxTemp)
+  {
+    this.maxTemp = maxTemp;
   }
 
   public LocalDateTime getSunrise()
@@ -95,12 +150,20 @@ public class Weather
     return sunrise;
   }
 
+  public void setSunrise(LocalDateTime sunrise)
+  {
+    this.sunrise = sunrise;
+  }
+
   public LocalDateTime getSunset()
   {
     return sunset;
   }
 
-  
-  
+  public void setSunset(LocalDateTime sunset)
+  {
+    this.sunset = sunset;
+  }
+
   
 }
