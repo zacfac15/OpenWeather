@@ -7,6 +7,7 @@ import javax.swing.AbstractListModel;
 
 public class LLM extends AbstractListModel
 {
+
   private List<Location> list = new ArrayList<>();
 
   @Override
@@ -20,23 +21,32 @@ public class LLM extends AbstractListModel
   {
     return list.get(index);
   }
-  
+
   public void add(Location loc)
   {
     list.add(loc);
-    this.fireIntervalAdded(loc, list.size()-1, list.size()-1);
+    this.fireIntervalAdded(loc, list.size() - 1, list.size() - 1);
+  }
+
+  public void replace(int index, Location loc)
+  {
+    list.set(index, loc);
+    this.fireContentsChanged(this, index, index);
   }
   
   public String getName(int index)
   {
     return list.get(index).getName();
   }
-  
-  
-  
+
+  public Location get(int index)
+  {
+    return list.get(index);
+  }
+
   public void remove(int index)
   {
     list.remove(index);
-    this.fireIntervalRemoved(list.get(index), index, index);
-  } 
+    this.fireIntervalRemoved(this, index, index);
+  }
 }

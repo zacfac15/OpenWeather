@@ -5,6 +5,7 @@
  */
 package ui;
 
+import DataClasses.Location;
 import bl.LLM;
 import bl.WTM;
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class IntroGUI extends javax.swing.JFrame
     jPopupMenu1 = new javax.swing.JPopupMenu();
     jMenuItem3 = new javax.swing.JMenuItem();
     jMenuItem4 = new javax.swing.JMenuItem();
+    jMenuItem5 = new javax.swing.JMenuItem();
     jPanel6 = new javax.swing.JPanel();
     jPanel4 = new javax.swing.JPanel();
     jSplitPane1 = new javax.swing.JSplitPane();
@@ -67,6 +69,16 @@ public class IntroGUI extends javax.swing.JFrame
       }
     });
     jPopupMenu1.add(jMenuItem4);
+
+    jMenuItem5.setText("edit");
+    jMenuItem5.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        jMenuItem5ActionPerformed(evt);
+      }
+    });
+    jPopupMenu1.add(jMenuItem5);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +163,16 @@ public class IntroGUI extends javax.swing.JFrame
     lm.remove(index);
   }//GEN-LAST:event_onDelete
 
+  private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem5ActionPerformed
+  {//GEN-HEADEREND:event_jMenuItem5ActionPerformed
+    ReplaceDlg dlg = new ReplaceDlg(this, true);
+    dlg.setVisible(true);
+    int index = ltList.getSelectedIndex();
+    dlg.get(lm.get(index));
+    lm.replace(index, dlg.getLoc());
+    
+  }//GEN-LAST:event_jMenuItem5ActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -203,6 +225,7 @@ public class IntroGUI extends javax.swing.JFrame
   private javax.swing.JMenuItem jMenuItem2;
   private javax.swing.JMenuItem jMenuItem3;
   private javax.swing.JMenuItem jMenuItem4;
+  private javax.swing.JMenuItem jMenuItem5;
   private javax.swing.JPanel jPanel4;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JPopupMenu jPopupMenu1;
