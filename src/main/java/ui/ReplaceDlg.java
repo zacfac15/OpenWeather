@@ -27,6 +27,10 @@ public class ReplaceDlg extends javax.swing.JDialog
     initComponents();
   }
   
+  /**
+   * to get the Location object from the GUI and to dispaly the data in the textfield
+   * @param loc Location object
+   */
   public void get(Location loc)
   {
     tfCity.setText(loc.getName());

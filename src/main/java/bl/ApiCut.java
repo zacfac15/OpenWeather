@@ -20,8 +20,7 @@ public class ApiCut
 
 
   /**
-   * Is needed to get the Data from the API-Key
-   *
+   * Is needed to get the Data from Open Weather
    * @param name is the ZIP code from the destination
    * @throws IOException
    */
@@ -44,8 +43,8 @@ public class ApiCut
   }
 
   /**
-   *
-   * @param name
+   * to parse the data in the known units
+   * @param name is the name with which the API will be called
    * @return finished Weather Object to Display in GUI
    * @throws java.io.IOException
    */

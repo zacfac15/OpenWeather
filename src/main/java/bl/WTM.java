@@ -42,6 +42,12 @@ public class WTM extends AbstractTableModel
       default: return "error";
     }
   }
+  
+  /**
+   * Displayes the Columnnames for the Table
+   * @param column colmunIndex for the Header
+   * @return a String with the columnname
+   */
 
   @Override
   public String getColumnName(int column)
@@ -50,7 +56,11 @@ public class WTM extends AbstractTableModel
   }
 
   
-  
+  /**
+   * To add in the List and to call the api( in another class)
+   * @param name City name to call API
+   * @throws IOException 
+   */
   public void addToList(String name) throws IOException
   {
     Weather w = api.parseData(name);
