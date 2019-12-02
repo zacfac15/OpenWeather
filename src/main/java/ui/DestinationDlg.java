@@ -51,11 +51,14 @@ public class DestinationDlg extends javax.swing.JDialog
     jLabel1.setText("Country");
     getContentPane().add(jLabel1);
 
+    tfCountry.setText("Austria");
     tfCountry.setToolTipText("");
     getContentPane().add(tfCountry);
 
     jLabel3.setText("Cityname");
     getContentPane().add(jLabel3);
+
+    tfCity.setText("Graz");
     getContentPane().add(tfCity);
 
     jButton1.setText("Add");
@@ -80,7 +83,7 @@ public class DestinationDlg extends javax.swing.JDialog
     String country = tfCountry.getText();
     String name = tfCity.getText();
     
-    loc = new Location(country,name);
+    loc = new Location(name,country);
 
     dispose();
   }//GEN-LAST:event_onAdd

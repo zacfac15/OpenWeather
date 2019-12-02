@@ -27,6 +27,13 @@ public class LLM extends AbstractListModel
     this.fireIntervalAdded(loc, list.size()-1, list.size()-1);
   }
   
+  public String getName(int index)
+  {
+    return list.get(index).getName();
+  }
+  
+  
+  
   public void remove(int index)
   {
     list.remove(index);

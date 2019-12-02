@@ -7,6 +7,9 @@ package ui;
 
 import bl.LLM;
 import bl.WTM;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,8 +38,9 @@ public class IntroGUI extends javax.swing.JFrame
     jMenuItem4 = new javax.swing.JMenuItem();
     jPanel6 = new javax.swing.JPanel();
     jPanel4 = new javax.swing.JPanel();
+    jSplitPane1 = new javax.swing.JSplitPane();
     jScrollPane3 = new javax.swing.JScrollPane();
-    ltList = new javax.swing.JList<>();
+    ltList = new javax.swing.JList();
     jScrollPane2 = new javax.swing.JScrollPane();
     jtTable = new javax.swing.JTable();
     jMenuBar1 = new javax.swing.JMenuBar();
@@ -44,9 +48,24 @@ public class IntroGUI extends javax.swing.JFrame
     jMenuItem1 = new javax.swing.JMenuItem();
     jMenuItem2 = new javax.swing.JMenuItem();
 
+    jMenuItem3.setText("Apply");
+    jMenuItem3.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onShow(evt);
+      }
+    });
     jPopupMenu1.add(jMenuItem3);
 
-    jMenuItem4.setText("jMenuItem4");
+    jMenuItem4.setText("delete");
+    jMenuItem4.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onDelete(evt);
+      }
+    });
     jPopupMenu1.add(jMenuItem4);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,9 +78,10 @@ public class IntroGUI extends javax.swing.JFrame
     jScrollPane3.setComponentPopupMenu(jPopupMenu1);
 
     ltList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    ltList.setComponentPopupMenu(jPopupMenu1);
     jScrollPane3.setViewportView(ltList);
 
-    jPanel4.add(jScrollPane3);
+    jSplitPane1.setLeftComponent(jScrollPane3);
 
     jtTable.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][]
@@ -78,7 +98,9 @@ public class IntroGUI extends javax.swing.JFrame
     ));
     jScrollPane2.setViewportView(jtTable);
 
-    jPanel4.add(jScrollPane2);
+    jSplitPane1.setRightComponent(jScrollPane2);
+
+    jPanel4.add(jSplitPane1);
 
     getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -110,6 +132,24 @@ public class IntroGUI extends javax.swing.JFrame
     dlg.setVisible(true);
     lm.add(dlg.getLoc());
   }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+  private void onShow(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onShow
+  {//GEN-HEADEREND:event_onShow
+    int index = ltList.getSelectedIndex();
+    try
+    {
+      wtm.addToList(lm.getName(index));
+    } catch (IOException ex)
+    {
+      Logger.getLogger(IntroGUI.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }//GEN-LAST:event_onShow
+
+  private void onDelete(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onDelete
+  {//GEN-HEADEREND:event_onDelete
+    int index = ltList.getSelectedIndex();
+    lm.remove(index);
+  }//GEN-LAST:event_onDelete
 
   /**
    * @param args the command line arguments
@@ -168,7 +208,8 @@ public class IntroGUI extends javax.swing.JFrame
   private javax.swing.JPopupMenu jPopupMenu1;
   private javax.swing.JScrollPane jScrollPane2;
   private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JSplitPane jSplitPane1;
   private javax.swing.JTable jtTable;
-  private javax.swing.JList<String> ltList;
+  private javax.swing.JList ltList;
   // End of variables declaration//GEN-END:variables
 }

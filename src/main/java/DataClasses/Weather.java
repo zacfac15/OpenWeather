@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public class Weather
 {
-  private int plz;
   private String destination;
   private String country;
   private String clouds;
@@ -18,9 +17,8 @@ public class Weather
   private LocalDateTime sunrise;
   private LocalDateTime sunset;
 
-  public Weather(int plz, String destination, String country, String clouds, String description, float windspeed, float pressure, float humidity, float currenttemp, float mintemp, float maxTemp, LocalDateTime sunrise, LocalDateTime sunset)
+  public Weather( String destination, String country, String clouds, String description, float windspeed, float pressure, float humidity, float currenttemp, float mintemp, float maxTemp, LocalDateTime sunrise, LocalDateTime sunset)
   {
-    this.plz = plz;
     this.destination = destination;
     this.country = country;
     this.clouds = clouds;
@@ -33,16 +31,6 @@ public class Weather
     this.maxTemp = maxTemp;
     this.sunrise = sunrise;
     this.sunset = sunset;
-  }
-
-  public int getPlz()
-  {
-    return plz;
-  }
-
-  public void setPlz(int plz)
-  {
-    this.plz = plz;
   }
 
   public String getDestination()

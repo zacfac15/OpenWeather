@@ -1,16 +1,10 @@
 package bl;
 
-import DataClasses.Location;
 import DataClasses.OpenWeatherResponse;
 import DataClasses.Weather;
 import com.google.gson.Gson;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
@@ -28,17 +22,17 @@ public class ApiCut
   /**
    * Is needed to get the Data from the API-Key
    *
-   * @param zip is the ZIP code from the destination
+   * @param name is the ZIP code from the destination
    * @throws IOException
    */
-  public void getData(String zip) throws IOException
+  public void getData(String name) throws IOException
   {
     Client client = ClientBuilder.newClient();
 
     Response r = client.target(URI)
             .path(PATH)
             .queryParam("APPID", APPID)
-            .queryParam("zip", zip)
+            .queryParam("q", name)
             .request(MediaType.APPLICATION_JSON)
             .get();
 
@@ -51,12 +45,14 @@ public class ApiCut
 
   /**
    *
-   * @param zip ZIP-Code from destination
+   * @param name
    * @return finished Weather Object to Display in GUI
+   * @throws java.io.IOException
    */
-  public Weather parseData(String zip)
+  public Weather parseData(String name) throws IOException
   {
-    int plz;
+    getData(name);
+    float kelvin = (float) -273.15;
     String destination;
     String country;
     String clouds;
@@ -70,7 +66,6 @@ public class ApiCut
     LocalDateTime sunrise;
     LocalDateTime sunset;
 
-    plz = Integer.parseInt(zip);
     destination = res.getName();
     country = res.getSys().getCountry();
     clouds = res.getWeather().get(0).getMain();
@@ -80,13 +75,13 @@ public class ApiCut
     humidity = res.getMain().getHumidity();
 
     float help = res.getMain().getTemp();
-    currenttemp = (float) ((5.0 * (help - 32.0)) / 9.0);
+    currenttemp = help + kelvin;
 
     help = res.getMain().getTemp_min();
-    mintemp = (float) ((5.0 * (help - 32.0)) / 9.0);
+    mintemp = help + kelvin;
 
     help = res.getMain().getTemp_max();
-    maxTemp = (float) ((5.0 * (help - 32.0)) / 9.0);
+    maxTemp = help + kelvin;
 
     help = res.getSys().getSunrise();
     sunrise = LocalDateTime.now().plusSeconds((long) help);
@@ -94,20 +89,7 @@ public class ApiCut
     help = res.getSys().getSunset();
     sunset = LocalDateTime.now().plusSeconds((long) help);
 
-    Weather weather = new Weather(plz, destination, country, clouds, description, windspeed, pressure, humidity, currenttemp, mintemp, maxTemp, sunrise, sunset);
+    Weather weather = new Weather(destination, country, clouds, description, windspeed, pressure, humidity, currenttemp, mintemp, maxTemp, sunrise, sunset);
     return weather;
-  }
-
-
-  public static void main(String[] args)
-  {
-    ApiCut cut = new ApiCut();
-    try
-    {
-      cut.readFromJson();
-    } catch (FileNotFoundException ex)
-    {
-      Logger.getLogger(ApiCut.class.getName()).log(Level.SEVERE, null, ex);
-    }
   }
 }
