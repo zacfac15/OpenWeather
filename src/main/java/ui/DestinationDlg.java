@@ -5,6 +5,9 @@
  */
 package ui;
 
+import DataClasses.Location;
+import bl.LLM;
+
 /**
  *
  * @author fabia
@@ -12,9 +15,13 @@ package ui;
 public class DestinationDlg extends javax.swing.JDialog
 {
 
-  /**
-   * Creates new form DestinationDlg
-   */
+  private Location loc;
+
+  public Location getLoc()
+  {
+    return loc;
+  }
+
   public DestinationDlg(java.awt.Frame parent, boolean modal)
   {
     super(parent, modal);
@@ -32,32 +39,33 @@ public class DestinationDlg extends javax.swing.JDialog
   {
 
     jLabel1 = new javax.swing.JLabel();
-    jTextField2 = new javax.swing.JTextField();
+    tfCountry = new javax.swing.JTextField();
     jLabel3 = new javax.swing.JLabel();
-    jTextField1 = new javax.swing.JTextField();
-    jLabel2 = new javax.swing.JLabel();
-    jTextField3 = new javax.swing.JTextField();
+    tfCity = new javax.swing.JTextField();
     jButton1 = new javax.swing.JButton();
     jButton2 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    getContentPane().setLayout(new java.awt.GridLayout(4, 2));
+    getContentPane().setLayout(new java.awt.GridLayout(3, 2));
 
     jLabel1.setText("Country");
     getContentPane().add(jLabel1);
 
-    jTextField2.setToolTipText("");
-    getContentPane().add(jTextField2);
+    tfCountry.setToolTipText("");
+    getContentPane().add(tfCountry);
 
     jLabel3.setText("Cityname");
     getContentPane().add(jLabel3);
-    getContentPane().add(jTextField1);
-
-    jLabel2.setText("Zip");
-    getContentPane().add(jLabel2);
-    getContentPane().add(jTextField3);
+    getContentPane().add(tfCity);
 
     jButton1.setText("Add");
+    jButton1.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onAdd(evt);
+      }
+    });
     getContentPane().add(jButton1);
 
     jButton2.setText("Discare");
@@ -66,6 +74,16 @@ public class DestinationDlg extends javax.swing.JDialog
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void onAdd(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onAdd
+  {//GEN-HEADEREND:event_onAdd
+    String country = tfCountry.getText();
+    String name = tfCity.getText();
+    
+    loc = new Location(country,name);
+
+    dispose();
+  }//GEN-LAST:event_onAdd
 
   /**
    * @param args the command line arguments
@@ -125,10 +143,8 @@ public class DestinationDlg extends javax.swing.JDialog
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
-  private javax.swing.JTextField jTextField1;
-  private javax.swing.JTextField jTextField2;
-  private javax.swing.JTextField jTextField3;
+  private javax.swing.JTextField tfCity;
+  private javax.swing.JTextField tfCountry;
   // End of variables declaration//GEN-END:variables
 }

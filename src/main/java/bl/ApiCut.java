@@ -1,10 +1,16 @@
 package bl;
 
+import DataClasses.Location;
 import DataClasses.OpenWeatherResponse;
 import DataClasses.Weather;
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
@@ -17,11 +23,13 @@ public class ApiCut
   private static String PATH = "weather";
   private static String APPID = "d098c83531678235423366b804870d8e";
   private OpenWeatherResponse res = new OpenWeatherResponse();
-  
+
+
   /**
    * Is needed to get the Data from the API-Key
+   *
    * @param zip is the ZIP code from the destination
-   * @throws IOException 
+   * @throws IOException
    */
   public void getData(String zip) throws IOException
   {
@@ -42,7 +50,7 @@ public class ApiCut
   }
 
   /**
-   * 
+   *
    * @param zip ZIP-Code from destination
    * @return finished Weather Object to Display in GUI
    */
@@ -70,23 +78,36 @@ public class ApiCut
     windspeed = res.getWind().getSpeed();
     pressure = res.getMain().getPressure();
     humidity = res.getMain().getHumidity();
-    
+
     float help = res.getMain().getTemp();
-    currenttemp =(float) (( 5.0 *(help - 32.0)) / 9.0);
-    
+    currenttemp = (float) ((5.0 * (help - 32.0)) / 9.0);
+
     help = res.getMain().getTemp_min();
-    mintemp =(float) (( 5.0 *(help - 32.0)) / 9.0);
-    
+    mintemp = (float) ((5.0 * (help - 32.0)) / 9.0);
+
     help = res.getMain().getTemp_max();
-    maxTemp = (float) (( 5.0 *(help - 32.0)) / 9.0);
-    
+    maxTemp = (float) ((5.0 * (help - 32.0)) / 9.0);
+
     help = res.getSys().getSunrise();
     sunrise = LocalDateTime.now().plusSeconds((long) help);
-    
+
     help = res.getSys().getSunset();
     sunset = LocalDateTime.now().plusSeconds((long) help);
-    
+
     Weather weather = new Weather(plz, destination, country, clouds, description, windspeed, pressure, humidity, currenttemp, mintemp, maxTemp, sunrise, sunset);
     return weather;
+  }
+
+
+  public static void main(String[] args)
+  {
+    ApiCut cut = new ApiCut();
+    try
+    {
+      cut.readFromJson();
+    } catch (FileNotFoundException ex)
+    {
+      Logger.getLogger(ApiCut.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
 }
