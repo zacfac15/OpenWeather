@@ -68,6 +68,10 @@ public class LLM extends AbstractListModel
     return list.get(index);
   }
   
+  /**
+   * to save the list
+   * @return 
+   */
   public List<Location> getToSave()
   {
     return list;

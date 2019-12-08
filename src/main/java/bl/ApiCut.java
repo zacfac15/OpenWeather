@@ -115,6 +115,13 @@ public class ApiCut
     Weather weather = new Weather(destination, country, clouds, description, windspeed, pressure, humidity, currenttemp, mintemp, maxTemp, sunrise, sunset, icon);
     return weather;
   }
+  
+  /**
+   * to display the img icons
+   * @param description
+   * @return
+   * @throws IOException 
+   */
 
   public ImageIcon getIcon(String description) throws IOException
   {

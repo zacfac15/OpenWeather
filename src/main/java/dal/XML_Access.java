@@ -31,6 +31,11 @@ public class XML_Access
     return xml;
   }
 
+  /**
+   * if the document did not exist a new one will be created
+   * @throws JDOMException
+   * @throws IOException 
+   */
   private XML_Access() throws JDOMException, IOException
   {
     if (doc == null)
@@ -44,6 +49,10 @@ public class XML_Access
     }
   }
 
+  /**
+   * to format the xml
+   * @throws IOException 
+   */
   public void persistXML() throws IOException
   {
     XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
