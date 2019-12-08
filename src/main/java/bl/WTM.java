@@ -11,7 +11,7 @@ public class WTM extends AbstractTableModel
 
   private List<Weather> weatherList = new ArrayList<>();
   private ApiCut api = new ApiCut();
-  private String[] headers = {"Country","Current Temprature","Pressure","Clouds","Windspeed","Description","Destination"};
+  private String[] headers = {"Country","Current Temprature","Pressure","Clouds","Windspeed","Description","Destination","Icon"};
 
   @Override
   public int getRowCount()
@@ -22,9 +22,15 @@ public class WTM extends AbstractTableModel
   @Override
   public int getColumnCount()
   {
-    return 7;
+    return 8;
   }
 
+  /**
+   * sets the Values in the right cell of the table
+   * @param rowIndex
+   * @param columnIndex
+   * @return 
+   */
   @Override
   public Object getValueAt(int rowIndex, int columnIndex)
   {
@@ -39,6 +45,7 @@ public class WTM extends AbstractTableModel
       case 4: return weather.getWindspeed();
       case 5: return weather.getDescription();
       case 6: return weather.getDestination();
+      case 7: return weather.getWc();
       default: return "error";
     }
   }

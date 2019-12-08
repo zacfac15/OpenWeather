@@ -8,9 +8,13 @@ package ui;
 import DataClasses.Location;
 import bl.LLM;
 import bl.WTM;
+import dal.XML_Access;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -21,12 +25,30 @@ public class IntroGUI extends javax.swing.JFrame
 
   private WTM wtm = new WTM();
   private LLM lm = new LLM();
+  private XML_Access xml;
+  private List<Location> list = new ArrayList<>();
 
   public IntroGUI()
   {
+    try
+    {
+      this.xml = XML_Access.getXML();
+    } catch (JDOMException ex)
+    {
+      Logger.getLogger(IntroGUI.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex)
+    {
+      Logger.getLogger(IntroGUI.class.getName()).log(Level.SEVERE, null, ex);
+    }
     initComponents();
     jtTable.setModel(wtm);
     ltList.setModel(lm);
+    jtTable.setDefaultRenderer(Object.class, new TableCellRenderer());
+    list = xml.getLocations();
+    for (Location location : list)
+    {
+      lm.add(location);
+    }
   }
 
   @SuppressWarnings("unchecked")
@@ -41,10 +63,12 @@ public class IntroGUI extends javax.swing.JFrame
     jPanel6 = new javax.swing.JPanel();
     jPanel4 = new javax.swing.JPanel();
     jSplitPane1 = new javax.swing.JSplitPane();
-    jScrollPane3 = new javax.swing.JScrollPane();
-    ltList = new javax.swing.JList();
+    jPanel1 = new javax.swing.JPanel();
     jScrollPane2 = new javax.swing.JScrollPane();
     jtTable = new javax.swing.JTable();
+    jPanel2 = new javax.swing.JPanel();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    ltList = new javax.swing.JList();
     jMenuBar1 = new javax.swing.JMenuBar();
     jMenu1 = new javax.swing.JMenu();
     jMenuItem1 = new javax.swing.JMenuItem();
@@ -81,19 +105,20 @@ public class IntroGUI extends javax.swing.JFrame
     jPopupMenu1.add(jMenuItem5);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    addWindowListener(new java.awt.event.WindowAdapter()
+    {
+      public void windowClosing(java.awt.event.WindowEvent evt)
+      {
+        onSave(evt);
+      }
+    });
 
     jPanel6.setLayout(new java.awt.GridLayout(1, 0));
     getContentPane().add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
     jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
-    jScrollPane3.setComponentPopupMenu(jPopupMenu1);
-
-    ltList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    ltList.setComponentPopupMenu(jPopupMenu1);
-    jScrollPane3.setViewportView(ltList);
-
-    jSplitPane1.setLeftComponent(jScrollPane3);
+    jPanel1.setLayout(new java.awt.GridLayout(1, 1));
 
     jtTable.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][]
@@ -110,7 +135,21 @@ public class IntroGUI extends javax.swing.JFrame
     ));
     jScrollPane2.setViewportView(jtTable);
 
-    jSplitPane1.setRightComponent(jScrollPane2);
+    jPanel1.add(jScrollPane2);
+
+    jSplitPane1.setRightComponent(jPanel1);
+
+    jPanel2.setLayout(new java.awt.GridLayout(1, 1));
+
+    jScrollPane3.setComponentPopupMenu(jPopupMenu1);
+
+    ltList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    ltList.setComponentPopupMenu(jPopupMenu1);
+    jScrollPane3.setViewportView(ltList);
+
+    jPanel2.add(jScrollPane3);
+
+    jSplitPane1.setLeftComponent(jPanel2);
 
     jPanel4.add(jSplitPane1);
 
@@ -170,8 +209,21 @@ public class IntroGUI extends javax.swing.JFrame
     int index = ltList.getSelectedIndex();
     dlg.get(lm.get(index));
     lm.replace(index, dlg.getLoc());
-    
+
   }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+  private void onSave(java.awt.event.WindowEvent evt)//GEN-FIRST:event_onSave
+  {//GEN-HEADEREND:event_onSave
+    try
+    {
+      list = lm.getToSave();
+      System.out.println(list.toString());
+      xml.saveLocations(list);
+    } catch (IOException ex)
+    {
+      Logger.getLogger(IntroGUI.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }//GEN-LAST:event_onSave
 
   /**
    * @param args the command line arguments
@@ -226,6 +278,8 @@ public class IntroGUI extends javax.swing.JFrame
   private javax.swing.JMenuItem jMenuItem3;
   private javax.swing.JMenuItem jMenuItem4;
   private javax.swing.JMenuItem jMenuItem5;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel4;
   private javax.swing.JPanel jPanel6;
   private javax.swing.JPopupMenu jPopupMenu1;

@@ -9,7 +9,12 @@ public class LLM extends AbstractListModel
 {
 
   private List<Location> list = new ArrayList<>();
-
+  
+  private void set(List<Location> list)
+  {
+    this.list = list;
+  }
+  
   @Override
   public int getSize()
   {
@@ -61,6 +66,11 @@ public class LLM extends AbstractListModel
   public Location get(int index)
   {
     return list.get(index);
+  }
+  
+  public List<Location> getToSave()
+  {
+    return list;
   }
 
   /**

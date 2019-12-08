@@ -1,6 +1,8 @@
 package DataClasses;
 
 import java.time.LocalDateTime;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Weather
 {
@@ -16,8 +18,9 @@ public class Weather
   private float maxTemp;
   private LocalDateTime sunrise;
   private LocalDateTime sunset;
+  private ImageIcon wc;
 
-  public Weather( String destination, String country, String clouds, String description, float windspeed, float pressure, float humidity, float currenttemp, float mintemp, float maxTemp, LocalDateTime sunrise, LocalDateTime sunset)
+  public Weather(String destination, String country, String clouds, String description, float windspeed, float pressure, float humidity, float currenttemp, float mintemp, float maxTemp, LocalDateTime sunrise, LocalDateTime sunset, ImageIcon wc)
   {
     this.destination = destination;
     this.country = country;
@@ -31,6 +34,7 @@ public class Weather
     this.maxTemp = maxTemp;
     this.sunrise = sunrise;
     this.sunset = sunset;
+    this.wc = wc;
   }
 
   public String getDestination()
@@ -153,5 +157,16 @@ public class Weather
     this.sunset = sunset;
   }
 
+  public ImageIcon getWc()
+  {
+    return wc;
+  }
+
+  public void setWc(ImageIcon wc)
+  {
+    this.wc = wc;
+  }
+  
+  
   
 }
